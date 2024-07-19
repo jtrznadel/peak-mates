@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208962972874",
+    "project_id": "peak-mates-fbd32",
+    "storage_bucket": "peak-mates-fbd32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208962972874:android:9ac65308ad3f693c1f1833",
+        "android_client_info": {
+          "package_name": "com.example.peakMates"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9_nPeCBOx40Z238DOMsTaAnpamcMRbik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

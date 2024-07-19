@@ -4,22 +4,24 @@ import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
 import 'package:peak_mates/core/res/string_res.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
-  static const routeName = '/login';
+  static const routeName = '/signUp';
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isObscured = true;
 
   @override
   void dispose() {
+    usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -45,15 +47,41 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      StringRes.loginNiceToSeeYou,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: AppColors.lightColor,
+                    RichText(
+                      textAlign: TextAlign.start,
+                      text: TextSpan(
+                        text: StringRes.signUpLetsBecome,
+                        style: context.theme.textTheme.titleLarge!.copyWith(
+                          color: AppColors.lightColor,
+                        ),
+                        children: [
+                          TextSpan(
+                              text: StringRes.mate,
+                              style: context.theme.textTheme.titleLarge),
+                          TextSpan(
+                            text: '!',
+                            style: context.theme.textTheme.titleLarge!.copyWith(
+                              color: AppColors.lightColor,
+                            ),
                           ),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 50),
                     Column(
                       children: [
+                        TextField(
+                          controller: usernameController,
+                          decoration: const InputDecoration(
+                            hintText: 'Username',
+                            prefixIcon: Icon(Icons.person),
+                          ),
+                          style: context.theme.textTheme.bodyMedium,
+                          keyboardType: TextInputType.emailAddress,
+                          keyboardAppearance: Brightness.dark,
+                          autocorrect: false,
+                        ),
+                        const SizedBox(height: 10),
                         TextField(
                           controller: emailController,
                           decoration: const InputDecoration(
@@ -91,18 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           enableSuggestions: false,
                           obscureText: isObscured,
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Forgot password?',
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                     const Spacer(),
@@ -113,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: ElevatedButton(
                             onPressed: () {},
                             child: Text(
-                              'Login',
+                              'Sign Up',
                               style:
                                   context.theme.textTheme.bodyMedium!.copyWith(
                                 color: AppColors.grayDarkColor,
@@ -125,15 +141,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('Don\'t have an account?'),
+                            const Text('Already have an account?'),
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushNamed('/signUp');
+                                Navigator.of(context).pushNamed('/login');
                               },
                               style: TextButton.styleFrom(
                                 foregroundColor: AppColors.primaryColor,
                               ),
-                              child: const Text('Sign Up Now'),
+                              child: const Text('Login Now'),
                             ),
                           ],
                         ),
@@ -147,33 +163,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
-  }
-}
-
-class WavyClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height * 0.35);
-    var firstControlPoint = Offset(size.width / 4, size.height * 0.30);
-    var firstEndPoint = Offset(size.width / 2, size.height * 0.35);
-    var secondControlPoint = Offset(size.width * 0.75, size.height * 0.40);
-    var secondEndPoint = Offset(size.width, size.height * 0.35);
-
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false;
   }
 }

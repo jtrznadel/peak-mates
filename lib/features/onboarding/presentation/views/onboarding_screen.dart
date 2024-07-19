@@ -55,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Center(
                   child: SwipeableButtonView(
                     onFinish: () {
-                      Navigator.of(context).pushNamed('/login');
+                      Navigator.of(context).pushNamed('/selection');
                     },
                     isFinished: _isFinished,
                     onWaitingProcess: () {
@@ -65,7 +65,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         });
                       });
                     },
-                    activeColor: AppColors.primaryColor.withOpacity(.2),
+                    activeColor: AppColors.grayDarkColor.withOpacity(.6),
                     buttonColor: AppColors.primaryColor,
                     buttonWidget: const Icon(
                       Icons.landscape,

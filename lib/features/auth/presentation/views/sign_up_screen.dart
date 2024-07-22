@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:peak_mates/core/common/functions/custom_snackbar.dart';
 import 'package:peak_mates/core/common/widgets/image_background.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
@@ -9,44 +7,27 @@ import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
 import 'package:peak_mates/core/res/string_res.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:peak_mates/features/home/presentation/views/home_screen.dart';
+import 'package:peak_mates/features/auth/presentation/views/login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
-  static const routeName = '/login';
+  static const routeName = '/signUp';
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final storage = const FlutterSecureStorage();
   bool isObscured = true;
-  bool _rememberMe = false;
-
-  Future<void> _readFromStorage() async {
-    final email = await storage.read(key: 'email') ?? '';
-    final password = await storage.read(key: 'password') ?? '';
-    final rememberMe = await storage.read(key: 'rememberMe') ?? 'false';
-    setState(() {
-      _rememberMe = rememberMe == 'true';
-    });
-    emailController.text = email;
-    passwordController.text = password;
-  }
-
-  @override
-  void initState() {
-    _readFromStorage();
-    super.initState();
-  }
 
   @override
   void dispose() {
+    usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -70,8 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (_, state) {
           if (state is AuthError) {
             CustomSnackbar.show(context, state.message);
-          } else if (state is SignedIn) {
-            Navigator.pushNamed(context, HomeScreen.routeName);
+          } else if (state is SignedUp) {
+            CustomSnackbar.show(context, 'Signed up successfully');
+            Navigator.pushNamed(context, LoginScreen.routeName);
           }
         },
         child: ImageBackground(
@@ -80,21 +62,21 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               RichText(
+                textAlign: TextAlign.start,
                 text: TextSpan(
-                  text: 'Nice to see You ',
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: AppColors.lightColor,
-                      ),
+                  text: StringRes.signUpLetsBecome,
+                  style: context.theme.textTheme.titleLarge!.copyWith(
+                    color: AppColors.lightColor,
+                  ),
                   children: [
                     TextSpan(
-                      text: 'again',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
+                        text: StringRes.mate,
+                        style: context.theme.textTheme.titleLarge),
                     TextSpan(
                       text: '!',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: AppColors.lightColor,
-                          ),
+                      style: context.theme.textTheme.titleLarge!.copyWith(
+                        color: AppColors.lightColor,
+                      ),
                     ),
                   ],
                 ),
@@ -104,6 +86,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: formKey,
                 child: Column(
                   children: [
+                    TextField(
+                      controller: usernameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Username',
+                        prefixIcon: Icon(Icons.person),
+                      ),
+                      style: context.theme.textTheme.bodyMedium,
+                      keyboardType: TextInputType.emailAddress,
+                      keyboardAppearance: Brightness.dark,
+                      autocorrect: false,
+                    ),
+                    const SizedBox(height: 10),
                     TextField(
                       controller: emailController,
                       decoration: const InputDecoration(
@@ -141,41 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       enableSuggestions: false,
                       obscureText: isObscured,
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Checkbox(
-                              value: _rememberMe,
-                              onChanged: (value) {
-                                setState(() {
-                                  _rememberMe = value!;
-                                });
-                              },
-                              activeColor: AppColors.primaryColor,
-                            ),
-                            Text(
-                              'Remember me',
-                              style:
-                                  context.theme.textTheme.bodyMedium!.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Forgot password?',
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ),
@@ -186,34 +145,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        FirebaseAuth.instance.currentUser?.reload();
                         if (formKey.currentState!.validate()) {
-                          if (_rememberMe) {
-                            storage.write(
-                              key: 'email',
-                              value: emailController.text.trim(),
-                            );
-                            storage.write(
-                              key: 'password',
-                              value: passwordController.text.trim(),
-                            );
-                            storage.write(
-                              key: 'rememberMe',
-                              value: 'true',
-                            );
-                          } else {
-                            storage.delete(key: 'email');
-                            storage.delete(key: 'password');
-                            storage.write(key: 'rememberMe', value: 'false');
-                          }
-                          context.read<AuthCubit>().signIn(
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim(),
+                          context.read<AuthCubit>().signUp(
+                                username: usernameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
                               );
                         }
                       },
                       child: Text(
-                        'Login',
+                        'Sign Up',
                         style: context.theme.textTheme.bodyMedium!.copyWith(
                           color: AppColors.grayDarkColor,
                           fontWeight: FontWeight.bold,
@@ -224,15 +165,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Don\'t have an account?'),
+                      const Text('Already have an account?'),
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pushNamed('/signUp');
+                          Navigator.of(context).pushNamed('/login');
                         },
                         style: TextButton.styleFrom(
                           foregroundColor: AppColors.primaryColor,
                         ),
-                        child: const Text('Sign Up Now'),
+                        child: const Text('Login Now'),
                       ),
                     ],
                   ),

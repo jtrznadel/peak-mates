@@ -9,7 +9,9 @@ sealed class AuthState extends Equatable {
 
 final class AuthInitial extends AuthState {}
 
-final class AuthLoading extends AuthState {}
+final class AuthLoading extends AuthState {
+  const AuthLoading();
+}
 
 final class SignedIn extends AuthState {
   final User user;
@@ -20,7 +22,9 @@ final class SignedIn extends AuthState {
   List<Object> get props => [user];
 }
 
-final class SignedUp extends AuthState {}
+final class SignedUp extends AuthState {
+  const SignedUp();
+}
 
 final class AuthError extends AuthState {
   final String message;

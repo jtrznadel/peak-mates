@@ -48,11 +48,11 @@ class UserModel extends User {
           uid: map['uid'] as String,
           email: map['email'] as String,
           username: map['username'] as String,
-          firstName: map['firstName'] as String,
-          nationality: map['nationality'] as String,
-          profilePicture: map['profilePicture'] as String,
-          bio: map['bio'] as String,
-          dateOfBirth: map['dateOfBirth'] as DateTime,
+          firstName: map['firstName'] as String?,
+          nationality: map['nationality'] as String?,
+          profilePicture: map['profilePicture'] as String?,
+          bio: map['bio'] as String?,
+          dateOfBirth: map['dateOfBirth'] as DateTime?,
         );
 
   DataMap toMap() {

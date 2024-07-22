@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:peak_mates/core/errors/exceptions.dart';
 import 'package:peak_mates/core/utilities/typedefs.dart';
@@ -25,7 +24,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   const AuthRemoteDataSourceImpl({
     required FirebaseAuth auth,
     required FirebaseFirestore firestore,
-    required FirebaseStorage storage,
   })  : _auth = auth,
         _firestore = firestore;
 

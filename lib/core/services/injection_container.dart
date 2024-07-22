@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:peak_mates/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:peak_mates/features/auth/data/repositories/auth_repo_impl.dart';
@@ -28,10 +28,8 @@ Future<void> _initAuth() async {
       () => AuthRemoteDataSourceImpl(
         firestore: sl(),
         auth: sl(),
-        storage: sl(),
       ),
     )
     ..registerLazySingleton(() => FirebaseAuth.instance)
-    ..registerLazySingleton(() => FirebaseFirestore.instance)
-    ..registerLazySingleton(() => FirebaseStorage.instance);
+    ..registerLazySingleton(() => FirebaseFirestore.instance);
 }

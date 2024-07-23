@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
+import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:peak_mates/features/auth/presentation/views/login_screen.dart';
 import 'package:peak_mates/features/auth/presentation/views/selection_screen.dart';
@@ -17,6 +19,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/':
       return _pageBuilder((context) {
         if (sl<FirebaseAuth>().currentUser != null) {
+          final user = sl<FirebaseAuth>().currentUser!;
+          final userModel = UserModel(
+            uid: user.uid,
+            email: user.email ?? '',
+            username: user.displayName ?? '',
+          );
+          context.userProvider.initUser(userModel);
           return const NavigationView();
         } else {
           return const SelectionScreen();

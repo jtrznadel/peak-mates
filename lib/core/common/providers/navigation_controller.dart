@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:peak_mates/core/common/view/persistent_view.dart';
 import 'package:peak_mates/features/chat/presentation/views/chat_center_screen.dart';
 import 'package:peak_mates/features/explore/presentation/views/explore_screen.dart';
 import 'package:peak_mates/features/home/presentation/views/home_screen.dart';
@@ -7,10 +6,10 @@ import 'package:peak_mates/features/profile/presentation/views/profile_screen.da
 
 class NavigationController extends ChangeNotifier {
   final List<Widget> _screens = [
-    const PersistentView(child: HomeScreen()),
-    const PersistentView(child: ExploreScreen()),
-    const PersistentView(child: ChatCenterScreen()),
-    const PersistentView(child: ProfileScreen()),
+    const HomeScreen(),
+    const ExploreScreen(),
+    const ChatCenterScreen(),
+    const ProfileScreen(),
   ];
 
   final List<BottomNavigationBarItem> _items = [

@@ -23,6 +23,20 @@ class AppTheme {
         fontSize: 16,
       ),
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.bgColorDark,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: AppColors.grayLightColor,
+    ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.bgColorDark,
+      elevation: 0,
+      titleTextStyle: GoogleFonts.inter(
+        color: AppColors.primaryColor,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all(AppColors.primaryColor),

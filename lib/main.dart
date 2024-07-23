@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:peak_mates/core/common/app/providers/user_provider.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
 import 'package:peak_mates/core/services/router.dart';
 import 'package:peak_mates/core/utilities/themes/theme.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationController()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: MaterialApp(
         title: 'peakMates',

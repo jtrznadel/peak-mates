@@ -10,22 +10,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ImageBackground(
-        image: MediaRes.onboardingBackground,
-        child: Center(
-          child: Column(
-            children: [
-              const Text('Home Screen'),
-              TextButton(
-                  onPressed: () async {
-                    await FirebaseAuth.instance.signOut();
-                    Navigator.pushReplacementNamed(context, '/');
-                  },
-                  child: const Text('logoue'))
-            ],
-          ),
-        ),
+    return const Center(
+      child: Column(
+        children: [
+          Text('Home Screen'),
+        ],
       ),
     );
   }

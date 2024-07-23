@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
 import 'package:peak_mates/core/services/router.dart';
 import 'package:peak_mates/core/utilities/themes/theme.dart';
+import 'package:peak_mates/core/common/providers/navigation_controller.dart';
 import 'package:peak_mates/firebase_options.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,11 +21,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'peakMates',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      onGenerateRoute: generateRoute,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NavigationController()),
+      ],
+      child: MaterialApp(
+        title: 'peakMates',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        onGenerateRoute: generateRoute,
+      ),
     );
   }
 }

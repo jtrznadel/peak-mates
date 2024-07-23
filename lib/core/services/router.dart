@@ -6,6 +6,7 @@ import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:peak_mates/features/auth/presentation/views/login_screen.dart';
 import 'package:peak_mates/features/auth/presentation/views/selection_screen.dart';
 import 'package:peak_mates/features/auth/presentation/views/sign_up_screen.dart';
+import 'package:peak_mates/core/common/view/navigation_view.dart';
 import 'package:peak_mates/features/home/presentation/views/home_screen.dart';
 import 'package:peak_mates/features/onboarding/presentation/views/onboarding_screen.dart';
 
@@ -16,7 +17,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/':
       return _pageBuilder((context) {
         if (sl<FirebaseAuth>().currentUser != null) {
-          return const HomeScreen();
+          return const NavigationView();
         } else {
           return const SelectionScreen();
         }
@@ -39,6 +40,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           settings: settings);
     case HomeScreen.routeName:
       return _pageBuilder((_) => const HomeScreen(), settings: settings);
+    case NavigationView.routeName:
+      return _pageBuilder((_) => const NavigationView(), settings: settings);
     default:
       return MaterialPageRoute(builder: (_) => const Placeholder());
   }

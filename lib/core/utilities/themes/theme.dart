@@ -7,7 +7,7 @@ class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    primaryColor: AppColors.lightColor,
+    primaryColor: AppColors.primaryColor,
     textTheme: TextTheme(
       titleLarge: GoogleFonts.inter(
         color: AppColors.primaryColor,

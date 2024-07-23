@@ -9,6 +9,7 @@ import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
 import 'package:peak_mates/core/res/string_res.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:peak_mates/core/common/view/navigation_view.dart';
 import 'package:peak_mates/features/home/presentation/views/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -71,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is AuthError) {
             CustomSnackbar.show(context, state.message);
           } else if (state is SignedIn) {
-            Navigator.pushNamed(context, HomeScreen.routeName);
+            Navigator.pushNamed(context, NavigationView.routeName);
           }
         },
         child: ImageBackground(

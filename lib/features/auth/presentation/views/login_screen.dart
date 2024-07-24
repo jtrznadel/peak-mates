@@ -8,11 +8,9 @@ import 'package:peak_mates/core/common/widgets/image_background.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
-import 'package:peak_mates/core/res/string_res.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:peak_mates/core/common/view/navigation_view.dart';
-import 'package:peak_mates/features/home/presentation/views/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

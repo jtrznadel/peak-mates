@@ -14,16 +14,16 @@ class NavigationController extends ChangeNotifier {
 
   final List<BottomNavigationBarItem> _items = [
     const BottomNavigationBarItem(
-      icon: Icon(Icons.home),
+      icon: Icon(Icons.cabin),
       label: 'Home',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.explore),
+      icon: Icon(Icons.hiking),
       label: 'Explore',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.message),
-      label: 'DMs',
+      icon: Icon(Icons.mail),
+      label: 'Messages',
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.person),

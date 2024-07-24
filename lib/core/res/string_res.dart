@@ -11,4 +11,7 @@ class StringRes {
 
   static const String loginNiceToSeeYou = 'Nice to see you again!';
   static const String signUpLetsBecome = 'Let\'s become a ';
+
+  static const String tempProfileBio =
+      '"Somewhere between the bottom of the climb and the summit is the answer to the mystery why we climb." – Greg Child';
 }

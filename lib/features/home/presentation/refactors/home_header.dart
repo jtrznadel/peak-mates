@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
@@ -11,32 +9,13 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RichText(
-          text: TextSpan(
-            text: 'Welcome, ',
-            style: context.theme.textTheme.bodyLarge!.copyWith(
-              fontWeight: FontWeight.bold,
-              fontSize: 28,
-            ),
-            children: [
-              TextSpan(
-                text: context.currentUser?.username ?? 'Unknown',
-                style: context.theme.textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryColor,
-                  fontSize: 28,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
-        const TextField(
+        TextField(
           decoration: InputDecoration(
             hintText: 'Where would you like to go?',
             prefixIcon: Icon(Icons.search),

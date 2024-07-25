@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:peak_mates/core/services/injection_container.dart';
+import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:peak_mates/features/chat/presentation/views/chat_center_screen.dart';
 import 'package:peak_mates/features/explore/presentation/views/explore_screen.dart';
 import 'package:peak_mates/features/home/presentation/views/home_screen.dart';
@@ -9,7 +12,10 @@ class NavigationController extends ChangeNotifier {
     const HomeScreen(),
     const ExploreScreen(),
     const ChatCenterScreen(),
-    const ProfileScreen(),
+    BlocProvider(
+      create: (context) => sl<AuthCubit>(),
+      child: const ProfileScreen(),
+    ),
   ];
 
   final List<BottomNavigationBarItem> _items = [

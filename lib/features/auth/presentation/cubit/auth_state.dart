@@ -14,7 +14,7 @@ final class AuthLoading extends AuthState {
 }
 
 final class SignedIn extends AuthState {
-  final User user;
+  final LocalUser user;
 
   const SignedIn(this.user);
 
@@ -24,6 +24,14 @@ final class SignedIn extends AuthState {
 
 final class SignedUp extends AuthState {
   const SignedUp();
+}
+
+final class UpdatingUser extends AuthState {
+  const UpdatingUser();
+}
+
+final class UserUpdated extends AuthState {
+  const UserUpdated();
 }
 
 final class AuthError extends AuthState {

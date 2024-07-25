@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:peak_mates/core/enums/update_user.dart';
 import 'package:peak_mates/core/errors/exceptions.dart';
 import 'package:peak_mates/core/errors/failures.dart';
 import 'package:peak_mates/core/utilities/typedefs.dart';
@@ -12,7 +13,7 @@ class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _remoteDataSource;
 
   @override
-  ResultFuture<User> signIn(
+  ResultFuture<LocalUser> signIn(
       {required String email, required String password}) async {
     try {
       final result =
@@ -35,6 +36,17 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
         username: username,
       );
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+    }
+  }
+
+  @override
+  ResultFuture<void> updateUser(
+      {required UpdateUserAction action, required dynamic userData}) async {
+    try {
+      await _remoteDataSource.updateUser(action: action, userData: userData);
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message, statusCode: e.statusCode));

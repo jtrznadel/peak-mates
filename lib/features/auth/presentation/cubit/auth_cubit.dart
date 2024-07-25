@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:peak_mates/core/enums/update_user.dart';
 import 'package:peak_mates/features/auth/domain/entities/user.dart';
 import 'package:peak_mates/features/auth/domain/usecases/sign_in.dart';
 import 'package:peak_mates/features/auth/domain/usecases/sign_up.dart';
+import 'package:peak_mates/features/auth/domain/usecases/update_user.dart';
 
 part 'auth_state.dart';
 
@@ -10,12 +12,15 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit({
     required SignIn signIn,
     required SignUp signUp,
+    required UpdateUser updateUser,
   })  : _signIn = signIn,
         _signUp = signUp,
+        _updateUser = updateUser,
         super(AuthInitial());
 
   final SignIn _signIn;
   final SignUp _signUp;
+  final UpdateUser _updateUser;
 
   Future<void> signIn({
     required String email,
@@ -41,6 +46,19 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(AuthError(failure.message)),
       (_) => emit(const SignedUp()),
+    );
+  }
+
+  Future<void> updateUser({
+    required UpdateUserAction action,
+    required dynamic userData,
+  }) async {
+    emit(const UpdatingUser());
+    final result =
+        await _updateUser(UpdateUserParams(action: action, userData: userData));
+    result.fold(
+      (failure) => emit(AuthError(failure.message)),
+      (_) => emit(const UserUpdated()),
     );
   }
 }

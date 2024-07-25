@@ -13,5 +13,5 @@ extension ContextExt on BuildContext {
   double get height => size.height;
 
   UserProvider get userProvider => read<UserProvider>();
-  User? get currentUser => userProvider.user;
+  LocalUser? get currentUser => userProvider.user;
 }

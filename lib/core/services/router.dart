@@ -46,8 +46,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
                 child: const SignUpScreen(),
               ),
           settings: settings);
-    case HomeScreen.routeName:
-      return _pageBuilder((_) => const HomeScreen(), settings: settings);
     case NavigationView.routeName:
       return _pageBuilder((_) => const NavigationView(), settings: settings);
     default:

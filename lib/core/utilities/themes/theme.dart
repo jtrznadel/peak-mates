@@ -23,6 +23,7 @@ class AppTheme {
         fontSize: 16,
       ),
     ),
+    scaffoldBackgroundColor: AppColors.bgColorDark,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.bgColorDark,
       selectedItemColor: AppColors.primaryColor,
@@ -31,6 +32,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.bgColorDark,
       elevation: 0,
+      foregroundColor: AppColors.primaryColor,
       titleTextStyle: GoogleFonts.inter(
         color: AppColors.primaryColor,
         fontSize: 20,
@@ -42,7 +44,24 @@ class AppTheme {
         backgroundColor: WidgetStateProperty.all(AppColors.primaryColor),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: WidgetStateProperty.all(AppColors.primaryColor),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        side: WidgetStateProperty.all(
+          const BorderSide(
+            color: AppColors.primaryColor,
+            style: BorderStyle.solid,
+            width: 1,
           ),
         ),
       ),
@@ -69,6 +88,18 @@ class AppTheme {
           ),
         ),
       ),
+    ),
+    listTileTheme: ListTileThemeData(
+      tileColor: AppColors.grayDarkColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      titleTextStyle: GoogleFonts.inter(
+        color: AppColors.lightColor,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+      iconColor: AppColors.primaryColor,
     ),
   );
 }

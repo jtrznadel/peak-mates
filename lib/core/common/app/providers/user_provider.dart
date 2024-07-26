@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
 
 class UserProvider extends ChangeNotifier {
@@ -15,7 +16,9 @@ class UserProvider extends ChangeNotifier {
   set user(UserModel? user) {
     if (_user != user) {
       _user = user;
-      notifyListeners();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        notifyListeners();
+      });
     }
   }
 }

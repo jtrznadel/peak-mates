@@ -17,35 +17,27 @@ class NavigationView extends StatefulWidget {
 class _NavigationViewState extends State<NavigationView> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<UserModel>(
-      stream: Streams.userDataStream,
-      builder: (_, snapshot) {
-        return Consumer<NavigationController>(
-          builder: (_, controller, __) {
-            if (snapshot.hasData && snapshot.data is UserModel) {
-              context.read<UserProvider>().user = snapshot.data;
-            }
-            return Scaffold(
-              body: IndexedStack(
-                index: controller.currentIndex,
-                children: controller.screens,
-              ),
-              bottomNavigationBar: Theme(
-                data: Theme.of(context).copyWith(
-                  splashColor: Colors.transparent,
-                ),
-                child: BottomNavigationBar(
-                  onTap: controller.changeIndex,
-                  items: controller.items,
-                  currentIndex: controller.currentIndex,
-                  iconSize: 18,
-                  showUnselectedLabels: true,
-                  selectedIconTheme: const IconThemeData(size: 24),
-                  type: BottomNavigationBarType.fixed,
-                ),
-              ),
-            );
-          },
+    return Consumer<NavigationController>(
+      builder: (_, controller, __) {
+        return Scaffold(
+          body: IndexedStack(
+            index: controller.currentIndex,
+            children: controller.screens,
+          ),
+          bottomNavigationBar: Theme(
+            data: Theme.of(context).copyWith(
+              splashColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              onTap: controller.changeIndex,
+              items: controller.items,
+              currentIndex: controller.currentIndex,
+              iconSize: 18,
+              showUnselectedLabels: true,
+              selectedIconTheme: const IconThemeData(size: 24),
+              type: BottomNavigationBarType.fixed,
+            ),
+          ),
         );
       },
     );

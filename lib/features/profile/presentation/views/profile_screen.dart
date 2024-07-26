@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:peak_mates/core/common/functions/custom_snackbar.dart';
 import 'package:peak_mates/core/enums/update_user.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
@@ -53,18 +54,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: AppColors.primaryColor,
             ),
             onPressed: () {
-              final userData = _photo;
-              context.read<AuthCubit>().updateUser(
-                  action: UpdateUserAction.profilePicture, userData: userData);
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.exit_to_app,
-              color: AppColors.primaryColor,
-            ),
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
+              // if (_photo == null) {
+              //   CustomSnackbar.show(context, 'Please select a photo');
+              //   return;
+              // }
+              // final userData = _photo;
+              // context.read<AuthCubit>().updateUser(
+              //     action: UpdateUserAction.profilePicture, userData: userData);
+              Navigator.pushNamed(context, '/settings');
             },
           ),
         ],

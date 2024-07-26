@@ -36,5 +36,17 @@ class LocalUser extends Equatable {
   final bool? verified;
 
   @override
-  List<Object?> get props => [uid];
+  List<Object?> get props => [
+        uid,
+        email,
+        username,
+        profilePicture,
+        firstName,
+        lastName,
+        nationality,
+        city,
+        bio,
+        dateOfBirth,
+        verified
+      ];
 }

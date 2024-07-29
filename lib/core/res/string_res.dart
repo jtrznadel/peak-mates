@@ -14,4 +14,6 @@ class StringRes {
 
   static const String tempProfileBio =
       '"Somewhere between the bottom of the climb and the summit is the answer to the mystery why we climb." – Greg Child';
+
+  static const String hintSearch = 'Where would you like to go?';
 }

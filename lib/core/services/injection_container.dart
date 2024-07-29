@@ -9,6 +9,7 @@ import 'package:peak_mates/features/auth/domain/usecases/sign_in.dart';
 import 'package:peak_mates/features/auth/domain/usecases/sign_up.dart';
 import 'package:peak_mates/features/auth/domain/usecases/update_user.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
@@ -17,6 +18,8 @@ Future<void> init() async {
 }
 
 Future<void> _initAuth() async {
+  final prefs = await SharedPreferences.getInstance();
+
   sl
     ..registerFactory(() => AuthCubit(
           signIn: sl(),
@@ -36,5 +39,6 @@ Future<void> _initAuth() async {
     )
     ..registerLazySingleton(() => FirebaseAuth.instance)
     ..registerLazySingleton(() => FirebaseFirestore.instance)
-    ..registerLazySingleton(() => FirebaseStorage.instance);
+    ..registerLazySingleton(() => FirebaseStorage.instance)
+    ..registerLazySingleton(() => prefs);
 }

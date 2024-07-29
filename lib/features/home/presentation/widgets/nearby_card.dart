@@ -93,17 +93,11 @@ class NearbyCard extends StatelessWidget {
                 children: [
                   Text(
                     'Kościelec, 🇵🇱',
-                    style: context.theme.textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: AppColors.primaryColor,
-                    ),
+                    style: context.theme.textTheme.titleSmall,
                   ),
                   Text(
                     'One of the most impressive and beautiful peaks in Polish Tatra area. You can reach the summit by marked route or by several difficult climbing routes.',
-                    style: context.theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 12,
-                    ),
+                    style: context.theme.textTheme.bodySmall,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),

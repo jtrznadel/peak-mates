@@ -36,7 +36,6 @@ class ProfileBody extends StatelessWidget {
                     'Latest Trips',
                     style: context.theme.textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppColors.lightColor,
                     ),
                   ),
                   const SizedBox(
@@ -58,7 +57,6 @@ class ProfileBody extends StatelessWidget {
                     'Posts',
                     style: context.theme.textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppColors.lightColor,
                     ),
                   ),
                   const SizedBox(

@@ -48,18 +48,12 @@ class DestinationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Kościelec',
-                    style: context.theme.textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: AppColors.primaryColor,
-                    ),
+                    'Dolomites, 🇮🇹',
+                    style: context.theme.textTheme.titleSmall,
                   ),
                   Text(
-                    'One of the most impressive and beautiful peaks in Polish Tatra area. You can reach the summit by marked route or by several difficult climbing routes.',
-                    style: context.theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 12,
-                    ),
+                    'The Dolomites are a mountain range lying in the eastern section of the northern Italian Alps. What makes these mountains so special is the fact that they are essentially composed of dolomite rock',
+                    style: context.theme.textTheme.bodySmall,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),

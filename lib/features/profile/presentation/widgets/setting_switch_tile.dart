@@ -19,7 +19,7 @@ class SettingSwitchTile extends StatefulWidget {
 }
 
 class _SettingSwitchTileState extends State<SettingSwitchTile> {
-  bool value = false;
+  bool value = true;
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +29,15 @@ class _SettingSwitchTileState extends State<SettingSwitchTile> {
           leading: widget.icon,
           title: Text(
             widget.title,
-            style: context.theme.textTheme.bodyMedium!.copyWith(
-              color: AppColors.lightColor,
-              fontSize: 16,
-            ),
           ),
           trailing: Switch(
             value: value,
             onChanged: (value) {
+              widget.onTap();
               setState(() {
                 this.value = value;
               });
             },
-            activeColor: AppColors.primaryColor,
-            inactiveTrackColor: AppColors.bgColorDark,
-            trackOutlineColor: WidgetStateProperty.all(AppColors.grayDarkColor),
-            thumbColor: WidgetStateProperty.all(AppColors.primaryColor),
           )),
     );
   }

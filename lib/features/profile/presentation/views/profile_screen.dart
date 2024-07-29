@@ -25,22 +25,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColorDark,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
-        title: Text(
+        title: const Text(
           'Profile',
-          style: context.theme.textTheme.bodyLarge!.copyWith(
-            color: AppColors.primaryColor,
-            fontWeight: FontWeight.bold,
-          ),
         ),
         actions: [
           IconButton(
             icon: const Icon(
               Icons.settings,
-              color: AppColors.primaryColor,
             ),
             onPressed: () {
               // if (_photo == null) {

@@ -86,19 +86,19 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               RichText(
                 text: TextSpan(
-                  text: 'Nice to see You ',
+                  text: 'Nice to see ',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: AppColors.lightColor,
+                        color: AppColors.lightTextColor,
                       ),
                   children: [
                     TextSpan(
-                      text: 'again',
+                      text: 'You ',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     TextSpan(
-                      text: '!',
+                      text: 'again!',
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: AppColors.lightColor,
+                            color: AppColors.lightTextColor,
                           ),
                     ),
                   ],
@@ -111,21 +111,42 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextField(
                       controller: emailController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Email',
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: const Icon(
+                          Icons.email,
+                          color: AppColors.primaryColor,
+                        ),
+                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grayLightColor,
+                        ),
+                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      style: context.theme.textTheme.bodyMedium,
+                      style: context.theme.textTheme.bodyMedium!.copyWith(
+                        color: AppColors.lightTextColor,
+                      ),
                       keyboardType: TextInputType.emailAddress,
                       keyboardAppearance: Brightness.dark,
                       autocorrect: false,
+                      cursorColor: AppColors.primaryColor,
                     ),
                     const SizedBox(height: 10),
                     TextField(
                       controller: passwordController,
                       decoration: InputDecoration(
                         hintText: 'Password',
-                        prefixIcon: const Icon(Icons.lock),
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                          color: AppColors.primaryColor,
+                        ),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -139,8 +160,23 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: AppColors.grayLightColor,
                           ),
                         ),
+                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grayLightColor,
+                        ),
+                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      style: context.theme.textTheme.bodyMedium,
+                      cursorColor: AppColors.primaryColor,
+                      style: context.theme.textTheme.bodyMedium!.copyWith(
+                        color: AppColors.lightTextColor,
+                      ),
                       keyboardAppearance: Brightness.dark,
                       autocorrect: false,
                       enableSuggestions: false,
@@ -163,12 +199,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 });
                               },
                               activeColor: AppColors.primaryColor,
+                              checkColor: AppColors.grayDarkColor,
                             ),
                             Text(
                               'Remember me',
                               style:
                                   context.theme.textTheme.bodyMedium!.copyWith(
                                 fontWeight: FontWeight.w500,
+                                color: AppColors.grayLightColor,
                               ),
                             ),
                           ],
@@ -217,6 +255,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                         }
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryColor,
+                      ),
                       child: Text(
                         'Login',
                         style: context.theme.textTheme.bodyMedium!.copyWith(
@@ -229,7 +270,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Don\'t have an account?'),
+                      Text(
+                        'Don\'t have an account?',
+                        style: context.theme.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grayLightColor,
+                        ),
+                      ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pushNamed('/signUp');

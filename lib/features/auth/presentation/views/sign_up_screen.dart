@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:peak_mates/core/common/functions/custom_snackbar.dart';
 import 'package:peak_mates/core/common/widgets/image_background.dart';
@@ -24,6 +25,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isObscured = true;
+
+  @override
+  void initState() {
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+    super.initState();
+  }
 
   @override
   void dispose() {

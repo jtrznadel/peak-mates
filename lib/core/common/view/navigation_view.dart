@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:peak_mates/core/res/colors.dart';
+import 'package:peak_mates/core/common/app/providers/user_provider.dart';
+import 'package:peak_mates/core/common/app/streams/streams.dart';
 import 'package:peak_mates/core/common/providers/navigation_controller.dart';
+import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:provider/provider.dart';
 
 class NavigationView extends StatefulWidget {
@@ -30,11 +32,10 @@ class _NavigationViewState extends State<NavigationView> {
               onTap: controller.changeIndex,
               items: controller.items,
               currentIndex: controller.currentIndex,
-              selectedItemColor: AppColors.primaryColor,
-              unselectedItemColor: Theme.of(context).disabledColor,
+              iconSize: 18,
               showUnselectedLabels: true,
+              selectedIconTheme: const IconThemeData(size: 24),
               type: BottomNavigationBarType.fixed,
-              backgroundColor: AppColors.lightColor,
             ),
           ),
         );

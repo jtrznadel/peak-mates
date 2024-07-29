@@ -1,10 +1,11 @@
+import 'package:peak_mates/core/enums/update_user.dart';
 import 'package:peak_mates/core/utilities/typedefs.dart';
 import 'package:peak_mates/features/auth/domain/entities/user.dart';
 
 abstract class AuthRepo {
   const AuthRepo();
 
-  ResultFuture<User> signIn({
+  ResultFuture<LocalUser> signIn({
     required String email,
     required String password,
   });
@@ -13,5 +14,10 @@ abstract class AuthRepo {
     required String email,
     required String password,
     required String username,
+  });
+
+  ResultFuture<void> updateUser({
+    required UpdateUserAction action,
+    required dynamic userData,
   });
 }

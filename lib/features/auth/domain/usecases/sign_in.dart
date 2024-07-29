@@ -4,13 +4,13 @@ import 'package:peak_mates/core/utilities/usecases.dart';
 import 'package:peak_mates/features/auth/domain/entities/user.dart';
 import 'package:peak_mates/features/auth/domain/repositories/auth_repo.dart';
 
-class SignIn extends UsecaseWithParams<User, SignInParams> {
+class SignIn extends UsecaseWithParams<LocalUser, SignInParams> {
   const SignIn(this._repo);
 
   final AuthRepo _repo;
 
   @override
-  ResultFuture<User> call(SignInParams params) => _repo.signIn(
+  ResultFuture<LocalUser> call(SignInParams params) => _repo.signIn(
         email: params.email,
         password: params.password,
       );

@@ -1,16 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:peak_mates/core/common/app/providers/user_provider.dart';
 import 'package:peak_mates/core/common/functions/custom_snackbar.dart';
 import 'package:peak_mates/core/common/widgets/image_background.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
-import 'package:peak_mates/core/res/string_res.dart';
+import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:peak_mates/core/common/view/navigation_view.dart';
-import 'package:peak_mates/features/home/presentation/views/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -42,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
     _readFromStorage();
     super.initState();
   }
@@ -72,6 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is AuthError) {
             CustomSnackbar.show(context, state.message);
           } else if (state is SignedIn) {
+            context.read<UserProvider>().initUser(state.user as UserModel);
+
             Navigator.pushNamed(context, NavigationView.routeName);
           }
         },

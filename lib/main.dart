@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:peak_mates/core/common/app/providers/user_provider.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
 import 'package:peak_mates/core/services/router.dart';
 import 'package:peak_mates/core/utilities/themes/theme.dart';
@@ -12,6 +14,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await init();
   runApp(const MyApp());
 }
@@ -24,6 +27,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationController()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: MaterialApp(
         title: 'peakMates',

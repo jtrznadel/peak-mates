@@ -22,19 +22,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  File? _photo;
-  final ImagePicker _picker = ImagePicker();
-
-  Future<void> imgFromGallery() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      setState(() {
-        _photo = File(pickedFile.path);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +29,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
+        title: Text(
+          'Profile',
+          style: context.theme.textTheme.bodyLarge!.copyWith(
+            color: AppColors.primaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
-          IconButton(
-              onPressed: () {
-                imgFromGallery();
-              },
-              icon: const Icon(Icons.photo_camera)),
           IconButton(
             icon: const Icon(
               Icons.settings,

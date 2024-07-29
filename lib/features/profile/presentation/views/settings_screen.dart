@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
+import 'package:peak_mates/features/profile/presentation/views/update_profile_screen.dart';
 import 'package:peak_mates/features/profile/presentation/widgets/setting_switch_tile.dart';
 import 'package:peak_mates/features/profile/presentation/widgets/setting_tile.dart';
 
@@ -39,7 +40,9 @@ class SettingsScreen extends StatelessWidget {
             SettingTile(
               title: 'Update profile',
               icon: const Icon(Icons.face_retouching_natural),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, UpdateProfileScreen.routeName);
+              },
             ),
             const SizedBox(height: 5),
             SettingTile(

@@ -33,25 +33,6 @@ class ProfileBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.currentUser!.bio!,
-                    style: context.theme.textTheme.bodyMedium!.copyWith(
-                      color: AppColors.grayLightColor,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 14,
-                    ),
-                    textAlign: TextAlign.start,
-                  ),
-                  const SizedBox(height: 15),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ProfileStatsItem(value: '201', label: 'Followers'),
-                      ProfileStatsItem(value: '127', label: 'Following'),
-                      ProfileStatsItem(value: '23', label: 'Friends'),
-                      ProfileStatsItem(value: '176', label: 'Trips'),
-                    ],
-                  ),
-                  Text(
                     'Latest Trips',
                     style: context.theme.textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.bold,

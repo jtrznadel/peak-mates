@@ -10,6 +10,7 @@ import 'package:peak_mates/features/auth/presentation/views/selection_screen.dar
 import 'package:peak_mates/features/auth/presentation/views/sign_up_screen.dart';
 import 'package:peak_mates/core/common/view/navigation_view.dart';
 import 'package:peak_mates/features/profile/presentation/views/settings_screen.dart';
+import 'package:peak_mates/features/profile/presentation/views/update_profile_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -53,6 +54,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case SettingsScreen.routeName:
       return _pageSlideBuilder(
         (_) => const SettingsScreen(),
+        settings: settings,
+      );
+    case UpdateProfileScreen.routeName:
+      return _pageSlideBuilder(
+        (_) => BlocProvider(
+          create: (context) => sl<AuthCubit>(),
+          child: const UpdateProfileScreen(),
+        ),
         settings: settings,
       );
     default:

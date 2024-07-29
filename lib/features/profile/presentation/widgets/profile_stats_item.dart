@@ -19,7 +19,7 @@ class ProfileStatsItem extends StatelessWidget {
         children: [
           Text(
             value,
-            style: context.theme.textTheme.bodyLarge!.copyWith(
+            style: context.theme.textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,
               color: AppColors.primaryColor,
             ),
@@ -28,6 +28,7 @@ class ProfileStatsItem extends StatelessWidget {
             label,
             style: context.theme.textTheme.bodyMedium!.copyWith(
               color: AppColors.grayLightColor,
+              fontSize: 14,
             ),
           ),
         ],

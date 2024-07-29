@@ -50,15 +50,20 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> updateUser({
-    required UpdateUserAction action,
-    required dynamic userData,
+    required Map<UpdateUserAction, dynamic> updates,
   }) async {
     emit(const UpdatingUser());
-    final result =
-        await _updateUser(UpdateUserParams(action: action, userData: userData));
-    result.fold(
-      (failure) => emit(AuthError(failure.message)),
-      (_) => emit(const UserUpdated()),
-    );
+    List<Future> updateFutures = [];
+    updates.forEach((action, userData) {
+      updateFutures.add(
+          _updateUser(UpdateUserParams(action: action, userData: userData)));
+    });
+    final result = await Future.wait(updateFutures);
+
+    if (result.any((result) => result.isLeft())) {
+      emit(const AuthError('One or more updates failed'));
+    } else {
+      emit(const UserUpdated());
+    }
   }
 }

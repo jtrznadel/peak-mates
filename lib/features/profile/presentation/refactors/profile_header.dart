@@ -6,6 +6,7 @@ import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
+import 'package:peak_mates/features/profile/presentation/widgets/profile_stats_item.dart';
 import 'package:provider/provider.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -114,14 +115,33 @@ class ProfileHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Follow'),
+              Text(
+                context.currentUser!.bio!,
+                style: context.theme.textTheme.bodyMedium!.copyWith(
+                  color: AppColors.grayLightColor,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 14,
                 ),
+                textAlign: TextAlign.start,
               ),
+              const SizedBox(height: 15),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ProfileStatsItem(value: '201', label: 'Followers'),
+                  ProfileStatsItem(value: '127', label: 'Following'),
+                  ProfileStatsItem(value: '23', label: 'Friends'),
+                  ProfileStatsItem(value: '176', label: 'Trips'),
+                ],
+              ),
+              // const SizedBox(height: 10),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: OutlinedButton(
+              //     onPressed: () {},
+              //     child: const Text('Follow'),
+              //   ),
+              // ),
             ],
           );
         });

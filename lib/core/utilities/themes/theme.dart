@@ -68,15 +68,40 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.primaryColor.withOpacity(.2),
+      fillColor: AppColors.bgColorDark.withOpacity(.5),
       hintStyle: GoogleFonts.inter(
         color: AppColors.grayLightColor,
       ),
       prefixIconColor: AppColors.primaryColor,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(15),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: AppColors.primaryColor,
+          width: 1,
+        ),
       ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: AppColors.grayDarkColor,
+          width: 1,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: AppColors.primaryColor,
+          width: 1,
+        ),
+      ),
+      labelStyle: const TextStyle(
+        color: AppColors.primaryColor,
+      ),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.primaryColor,
+      selectionColor: AppColors.primaryColor.withOpacity(.5),
+      selectionHandleColor: AppColors.primaryColor,
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(

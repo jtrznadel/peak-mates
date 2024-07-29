@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:peak_mates/core/common/app/providers/user_provider.dart';
+import 'package:peak_mates/core/common/providers/theme_controller.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
 import 'package:peak_mates/core/services/router.dart';
 import 'package:peak_mates/core/utilities/themes/theme.dart';
@@ -28,12 +29,15 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationController()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
-      child: MaterialApp(
-        title: 'peakMates',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        onGenerateRoute: generateRoute,
+      child: Consumer<ThemeProvider>(
+        builder: (context, ThemeProvider themeProvider, _) => MaterialApp(
+          title: 'peakMates',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeProvider.themeData,
+          onGenerateRoute: generateRoute,
+        ),
       ),
     );
   }

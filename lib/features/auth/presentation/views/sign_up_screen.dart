@@ -73,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 text: TextSpan(
                   text: StringRes.signUpLetsBecome,
                   style: context.theme.textTheme.titleLarge!.copyWith(
-                    color: AppColors.lightColor,
+                    color: AppColors.lightTextColor,
                   ),
                   children: [
                     TextSpan(
@@ -82,7 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     TextSpan(
                       text: '!',
                       style: context.theme.textTheme.titleLarge!.copyWith(
-                        color: AppColors.lightColor,
+                        color: AppColors.lightTextColor,
                       ),
                     ),
                   ],
@@ -95,11 +95,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     TextField(
                       controller: usernameController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Username',
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: const Icon(
+                          Icons.person,
+                          color: AppColors.primaryColor,
+                        ),
+                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grayLightColor,
+                        ),
+                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      style: context.theme.textTheme.bodyMedium,
+                      style: context.theme.textTheme.bodyMedium!.copyWith(
+                        color: AppColors.lightTextColor,
+                      ),
+                      cursorColor: AppColors.primaryColor,
                       keyboardType: TextInputType.emailAddress,
                       keyboardAppearance: Brightness.dark,
                       autocorrect: false,
@@ -107,11 +125,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 10),
                     TextField(
                       controller: emailController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Email',
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: const Icon(
+                          Icons.email,
+                          color: AppColors.primaryColor,
+                        ),
+                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grayLightColor,
+                        ),
+                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      style: context.theme.textTheme.bodyMedium,
+                      style: context.theme.textTheme.bodyMedium!.copyWith(
+                        color: AppColors.lightTextColor,
+                      ),
+                      cursorColor: AppColors.primaryColor,
                       keyboardType: TextInputType.emailAddress,
                       keyboardAppearance: Brightness.dark,
                       autocorrect: false,
@@ -121,7 +157,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: passwordController,
                       decoration: InputDecoration(
                         hintText: 'Password',
-                        prefixIcon: const Icon(Icons.lock),
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                          color: AppColors.primaryColor,
+                        ),
+                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grayLightColor,
+                        ),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -135,8 +177,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             color: AppColors.grayLightColor,
                           ),
                         ),
+                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      style: context.theme.textTheme.bodyMedium,
+                      cursorColor: AppColors.primaryColor,
+                      style: context.theme.textTheme.bodyMedium!.copyWith(
+                        color: AppColors.lightTextColor,
+                      ),
                       keyboardAppearance: Brightness.dark,
                       autocorrect: false,
                       enableSuggestions: false,
@@ -160,6 +214,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                         }
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryColor,
+                      ),
                       child: Text(
                         'Sign Up',
                         style: context.theme.textTheme.bodyMedium!.copyWith(
@@ -172,7 +229,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Already have an account?'),
+                      Text(
+                        'Already have an account?',
+                        style: context.theme.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grayLightColor,
+                        ),
+                      ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pushNamed('/login');

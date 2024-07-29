@@ -17,18 +17,13 @@ class HeadingSeeAll extends StatelessWidget {
       children: [
         Text(
           heading,
-          style: context.theme.textTheme.bodyLarge!.copyWith(
-            fontWeight: FontWeight.bold,
-            color: AppColors.lightColor,
-          ),
+          style: context.theme.textTheme.labelLarge,
         ),
         TextButton(
           onPressed: () {},
           child: Text(
             'See all',
-            style: context.theme.textTheme.bodyMedium!.copyWith(
-              color: AppColors.primaryColor,
-            ),
+            style: context.theme.textTheme.labelSmall,
           ),
         ),
       ],

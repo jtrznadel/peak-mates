@@ -34,16 +34,17 @@ class _SelectionScreenState extends State<SelectionScreen> {
             text: TextSpan(
               text: StringRes.selectionTitle,
               style: context.theme.textTheme.titleLarge!.copyWith(
-                color: AppColors.lightColor,
+                color: AppColors.lightTextColor,
               ),
               children: [
                 TextSpan(
-                    text: StringRes.appName,
-                    style: context.theme.textTheme.titleLarge),
+                  text: StringRes.appName,
+                  style: context.theme.textTheme.titleLarge,
+                ),
                 TextSpan(
                   text: '!',
                   style: context.theme.textTheme.titleLarge!.copyWith(
-                    color: AppColors.lightColor,
+                    color: AppColors.lightTextColor,
                   ),
                 ),
               ],
@@ -57,6 +58,12 @@ class _SelectionScreenState extends State<SelectionScreen> {
                   onPressed: () {
                     Navigator.of(context).pushNamed('/login');
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   child: Text(
                     'Login',
                     style: context.theme.textTheme.bodyMedium!.copyWith(

@@ -24,18 +24,10 @@ class SettingTile extends StatelessWidget {
         leading: icon,
         title: Text(
           title,
-          style: context.theme.textTheme.bodyMedium!.copyWith(
-            color: AppColors.lightColor,
-            fontSize: 16,
-          ),
         ),
         subtitle: subtitle != null
             ? Text(
                 subtitle!,
-                style: context.theme.textTheme.bodyMedium!.copyWith(
-                  color: AppColors.grayLightColor,
-                  fontSize: 12,
-                ),
               )
             : null,
         trailing: const Icon(

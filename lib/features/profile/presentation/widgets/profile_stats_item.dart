@@ -19,17 +19,11 @@ class ProfileStatsItem extends StatelessWidget {
         children: [
           Text(
             value,
-            style: context.theme.textTheme.bodyMedium!.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryColor,
-            ),
+            style: context.theme.textTheme.titleMedium,
           ),
           Text(
             label,
-            style: context.theme.textTheme.bodyMedium!.copyWith(
-              color: AppColors.grayLightColor,
-              fontSize: 14,
-            ),
+            style: context.theme.textTheme.labelSmall,
           ),
         ],
       ),

@@ -258,16 +258,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                     .updateUser(updates: updates);
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primaryColor,
                                 minimumSize: Size(context.width, 50),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Update Profile',
-                                style: context.theme.textTheme.bodyMedium!
-                                    .copyWith(
-                                  color: AppColors.bgColorDark,
-                                  fontWeight: FontWeight.bold,
-                                ),
                               ),
                             )
                           : const SizedBox();

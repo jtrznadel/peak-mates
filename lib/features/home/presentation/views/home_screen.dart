@@ -31,7 +31,6 @@ class HomeScreen extends StatelessWidget {
         }
         return Scaffold(
           resizeToAvoidBottomInset: true,
-          backgroundColor: AppColors.bgColorDark,
           appBar: AppBar(
             scrolledUnderElevation: 0,
             automaticallyImplyLeading: false,
@@ -39,17 +38,12 @@ class HomeScreen extends StatelessWidget {
               text: TextSpan(
                 text: 'Welcome, ',
                 style: context.theme.textTheme.bodyMedium!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  color: AppColors.grayLightColor,
                 ),
                 children: [
                   TextSpan(
                     text: context.currentUser?.firstName,
-                    style: context.theme.textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryColor,
-                      fontSize: 20,
-                    ),
+                    style: context.theme.textTheme.titleMedium,
                   ),
                 ],
               ),
@@ -59,7 +53,6 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.notifications,
-                  color: AppColors.primaryColor,
                 ),
               ),
               Padding(

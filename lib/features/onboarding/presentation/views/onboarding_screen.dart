@@ -69,7 +69,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     buttonColor: AppColors.primaryColor,
                     buttonWidget: const Icon(
                       Icons.landscape,
-                      color: AppColors.lightColor,
                     ),
                     buttonText: "Explore now",
                     buttontextstyle: Theme.of(context).textTheme.bodyLarge,

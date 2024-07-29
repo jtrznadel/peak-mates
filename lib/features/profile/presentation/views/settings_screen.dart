@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:peak_mates/core/common/providers/theme_controller.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
 import 'package:peak_mates/features/profile/presentation/views/update_profile_screen.dart';
 import 'package:peak_mates/features/profile/presentation/widgets/setting_switch_tile.dart';
 import 'package:peak_mates/features/profile/presentation/widgets/setting_tile.dart';
+import 'package:peak_mates/features/profile/presentation/widgets/theme_switch.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -16,12 +19,8 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Settings',
-          style: context.theme.textTheme.bodyLarge!.copyWith(
-            color: AppColors.primaryColor,
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ),
       body: Padding(
@@ -31,10 +30,7 @@ class SettingsScreen extends StatelessWidget {
           children: [
             Text(
               'General',
-              style: context.theme.textTheme.bodyMedium!.copyWith(
-                color: AppColors.grayLightColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: context.theme.textTheme.labelMedium,
             ),
             const SizedBox(height: 5),
             SettingTile(
@@ -54,10 +50,7 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 5),
             Text(
               'Account',
-              style: context.theme.textTheme.bodyMedium!.copyWith(
-                color: AppColors.grayLightColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: context.theme.textTheme.labelMedium,
             ),
             const SizedBox(height: 5),
             SettingTile(
@@ -74,17 +67,10 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 5),
             Text(
               'Preference',
-              style: context.theme.textTheme.bodyMedium!.copyWith(
-                color: AppColors.grayLightColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: context.theme.textTheme.labelMedium,
             ),
             const SizedBox(height: 5),
-            SettingSwitchTile(
-              title: 'Dark mode',
-              icon: const Icon(Icons.brightness_2_outlined),
-              onTap: () {},
-            ),
+            const ThemeSwitch(),
             const SizedBox(height: 5),
             SettingSwitchTile(
               title: 'Notifications',
@@ -94,10 +80,7 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 5),
             Text(
               'Security',
-              style: context.theme.textTheme.bodyMedium!.copyWith(
-                color: AppColors.grayLightColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: context.theme.textTheme.labelMedium,
             ),
             const SizedBox(height: 5),
             SettingSwitchTile(

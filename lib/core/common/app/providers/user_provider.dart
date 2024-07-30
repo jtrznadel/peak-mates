@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
 
 class UserProvider extends ChangeNotifier {

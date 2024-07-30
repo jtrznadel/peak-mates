@@ -4,7 +4,6 @@ import 'package:peak_mates/core/common/app/streams/streams.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
 import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
-import 'package:peak_mates/core/res/string_res.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:peak_mates/features/home/presentation/refactors/home_body.dart';
 import 'package:peak_mates/features/home/presentation/refactors/home_header.dart';
@@ -21,10 +20,8 @@ class HomeScreen extends StatelessWidget {
       stream: Streams.userDataStream,
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // Stream is still loading
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          // Stream has an error
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData && snapshot.data is UserModel) {
           context.read<UserProvider>().user = snapshot.data;

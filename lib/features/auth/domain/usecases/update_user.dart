@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:peak_mates/core/enums/update_user.dart';
 import 'package:peak_mates/core/utilities/typedefs.dart';
 import 'package:peak_mates/core/utilities/usecases.dart';
-import 'package:peak_mates/features/auth/domain/entities/user.dart';
 import 'package:peak_mates/features/auth/domain/repositories/auth_repo.dart';
 
 class UpdateUser extends UsecaseWithParams<void, UpdateUserParams> {

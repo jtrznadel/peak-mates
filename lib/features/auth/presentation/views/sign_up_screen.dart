@@ -9,6 +9,9 @@ import 'package:peak_mates/core/res/media_res.dart';
 import 'package:peak_mates/core/res/string_res.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:peak_mates/features/auth/presentation/views/login_screen.dart';
+import 'package:peak_mates/features/auth/presentation/widgets/auth_password_field.dart';
+import 'package:peak_mates/features/auth/presentation/widgets/auth_text_field.dart';
+import 'package:peak_mates/features/auth/presentation/widgets/sign_up_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -24,7 +27,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  bool isObscured = true;
 
   @override
   void initState() {
@@ -93,138 +95,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 key: formKey,
                 child: Column(
                   children: [
-                    TextField(
+                    AuthTextField(
                       controller: usernameController,
-                      decoration: InputDecoration(
-                        hintText: 'Username',
-                        prefixIcon: const Icon(
-                          Icons.person,
-                          color: AppColors.primaryColor,
-                        ),
-                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
-                          color: AppColors.grayLightColor,
-                        ),
-                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      style: context.theme.textTheme.bodyMedium!.copyWith(
-                        color: AppColors.lightTextColor,
-                      ),
-                      cursorColor: AppColors.primaryColor,
-                      keyboardType: TextInputType.emailAddress,
-                      keyboardAppearance: Brightness.dark,
-                      autocorrect: false,
+                      hint: 'Username',
                     ),
                     const SizedBox(height: 10),
-                    TextField(
+                    AuthTextField(
                       controller: emailController,
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        prefixIcon: const Icon(
-                          Icons.email,
-                          color: AppColors.primaryColor,
-                        ),
-                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
-                          color: AppColors.grayLightColor,
-                        ),
-                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      style: context.theme.textTheme.bodyMedium!.copyWith(
-                        color: AppColors.lightTextColor,
-                      ),
-                      cursorColor: AppColors.primaryColor,
-                      keyboardType: TextInputType.emailAddress,
-                      keyboardAppearance: Brightness.dark,
-                      autocorrect: false,
+                      hint: 'Email',
                     ),
                     const SizedBox(height: 10),
-                    TextField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: AppColors.primaryColor,
-                        ),
-                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
-                          color: AppColors.grayLightColor,
-                        ),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isObscured = !isObscured;
-                            });
-                          },
-                          child: Icon(
-                            isObscured
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: AppColors.grayLightColor,
-                          ),
-                        ),
-                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      cursorColor: AppColors.primaryColor,
-                      style: context.theme.textTheme.bodyMedium!.copyWith(
-                        color: AppColors.lightTextColor,
-                      ),
-                      keyboardAppearance: Brightness.dark,
-                      autocorrect: false,
-                      enableSuggestions: false,
-                      obscureText: isObscured,
-                    ),
+                    AuthPasswordField(
+                      passwordController: passwordController,
+                    )
                   ],
                 ),
               ),
               const Spacer(),
               Column(
                 children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          context.read<AuthCubit>().signUp(
-                                username: usernameController.text,
-                                email: emailController.text,
-                                password: passwordController.text,
-                              );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryColor,
-                      ),
-                      child: Text(
-                        'Sign Up',
-                        style: context.theme.textTheme.bodyMedium!.copyWith(
-                          color: AppColors.grayDarkColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                  SignUpButton(
+                    formKey: formKey,
+                    usernameController: usernameController,
+                    emailController: emailController,
+                    passwordController: passwordController,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:peak_mates/core/common/app/providers/user_provider.dart';
-import 'package:peak_mates/core/common/app/streams/streams.dart';
 import 'package:peak_mates/core/common/providers/navigation_controller.dart';
-import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:provider/provider.dart';
 
 class NavigationView extends StatefulWidget {

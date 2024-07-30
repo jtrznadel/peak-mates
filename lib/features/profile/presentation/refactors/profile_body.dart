@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:peak_mates/core/common/app/providers/user_provider.dart';
 import 'package:peak_mates/core/common/app/streams/streams.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
-import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:peak_mates/features/home/presentation/widgets/destination_card.dart';
-import 'package:peak_mates/features/profile/presentation/widgets/profile_stats_item.dart';
 import 'package:provider/provider.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -19,11 +17,13 @@ class ProfileBody extends StatelessWidget {
         stream: Streams.userDataStream,
         builder: (_, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // Stream is still loading
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (snapshot.hasError) {
-            // Stream has an error
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
           } else if (snapshot.hasData && snapshot.data is UserModel) {
             context.read<UserProvider>().user = snapshot.data;
           }

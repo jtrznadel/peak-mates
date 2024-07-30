@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +11,9 @@ import 'package:peak_mates/core/res/media_res.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:peak_mates/core/common/view/navigation_view.dart';
+import 'package:peak_mates/features/auth/presentation/widgets/auth_password_field.dart';
+import 'package:peak_mates/features/auth/presentation/widgets/auth_text_field.dart';
+import 'package:peak_mates/features/auth/presentation/widgets/login_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -109,163 +111,57 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: formKey,
                 child: Column(
                   children: [
-                    TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        prefixIcon: const Icon(
-                          Icons.email,
-                          color: AppColors.primaryColor,
-                        ),
-                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
-                          color: AppColors.grayLightColor,
-                        ),
-                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      style: context.theme.textTheme.bodyMedium!.copyWith(
-                        color: AppColors.lightTextColor,
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      keyboardAppearance: Brightness.dark,
-                      autocorrect: false,
-                      cursorColor: AppColors.primaryColor,
-                    ),
+                    AuthTextField(controller: emailController, hint: 'Email'),
                     const SizedBox(height: 10),
-                    TextField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: AppColors.primaryColor,
-                        ),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isObscured = !isObscured;
-                            });
-                          },
-                          child: Icon(
-                            isObscured
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: AppColors.grayLightColor,
-                          ),
-                        ),
-                        hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
-                          color: AppColors.grayLightColor,
-                        ),
-                        fillColor: AppColors.grayDarkColor.withOpacity(.5),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      cursorColor: AppColors.primaryColor,
-                      style: context.theme.textTheme.bodyMedium!.copyWith(
-                        color: AppColors.lightTextColor,
-                      ),
-                      keyboardAppearance: Brightness.dark,
-                      autocorrect: false,
-                      enableSuggestions: false,
-                      obscureText: isObscured,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Checkbox(
-                              value: _rememberMe,
-                              onChanged: (value) {
-                                setState(() {
-                                  _rememberMe = value!;
-                                });
-                              },
-                              activeColor: AppColors.primaryColor,
-                              checkColor: AppColors.grayDarkColor,
-                            ),
-                            Text(
-                              'Remember me',
-                              style:
-                                  context.theme.textTheme.bodyMedium!.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.grayLightColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Forgot password?',
-                          ),
-                        ),
-                      ],
-                    ),
+                    AuthPasswordField(passwordController: passwordController),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        value: _rememberMe,
+                        onChanged: (value) {
+                          setState(() {
+                            _rememberMe = value!;
+                          });
+                        },
+                        activeColor: AppColors.primaryColor,
+                        checkColor: AppColors.grayDarkColor,
+                      ),
+                      Text(
+                        'Remember me',
+                        style: context.theme.textTheme.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.grayLightColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Forgot password?',
+                    ),
+                  ),
+                ],
               ),
               const Spacer(),
               Column(
                 children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        FirebaseAuth.instance.currentUser?.reload();
-                        if (formKey.currentState!.validate()) {
-                          if (_rememberMe) {
-                            storage.write(
-                              key: 'email',
-                              value: emailController.text.trim(),
-                            );
-                            storage.write(
-                              key: 'password',
-                              value: passwordController.text.trim(),
-                            );
-                            storage.write(
-                              key: 'rememberMe',
-                              value: 'true',
-                            );
-                          } else {
-                            storage.delete(key: 'email');
-                            storage.delete(key: 'password');
-                            storage.write(key: 'rememberMe', value: 'false');
-                          }
-                          context.read<AuthCubit>().signIn(
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim(),
-                              );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryColor,
-                      ),
-                      child: Text(
-                        'Login',
-                        style: context.theme.textTheme.bodyMedium!.copyWith(
-                          color: AppColors.grayDarkColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                  LoginButton(
+                    formKey: formKey,
+                    rememberMe: _rememberMe,
+                    storage: storage,
+                    emailController: emailController,
+                    passwordController: passwordController,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

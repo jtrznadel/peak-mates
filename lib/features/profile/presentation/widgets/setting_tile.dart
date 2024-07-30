@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:peak_mates/core/extensions/context_extension.dart';
-import 'package:peak_mates/core/res/colors.dart';
 
 class SettingTile extends StatelessWidget {
   const SettingTile({

@@ -18,7 +18,7 @@ class DestinationCard extends StatelessWidget {
           decoration: BoxDecoration(
             image: const DecorationImage(
               image: AssetImage(
-                'assets/images/koscielec.jpg',
+                'assets/images/dolomites.jpg',
               ),
               fit: BoxFit.cover,
             ),
@@ -48,7 +48,7 @@ class DestinationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Dolomites, 🇮🇹',
+                    'Dolomites 🇮🇹',
                     style: context.theme.textTheme.titleSmall,
                   ),
                   Text(

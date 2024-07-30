@@ -1,14 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:peak_mates/core/common/functions/custom_snackbar.dart';
-import 'package:peak_mates/core/enums/update_user.dart';
 import 'package:peak_mates/core/extensions/context_extension.dart';
-import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/media_res.dart';
+import 'package:peak_mates/core/services/injection_container.dart';
 import 'package:peak_mates/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:peak_mates/features/profile/presentation/widgets/update_avatar_selector.dart';
+import 'package:peak_mates/features/profile/presentation/widgets/update_profile_button.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
@@ -104,30 +103,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   height: context.width * .4,
                   child: GestureDetector(
                     onTap: imgFromGallery,
-                    child: Stack(
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: _updatedPhoto != null
-                              ? AssetImage(_updatedPhoto!.path)
-                              : userPhoto,
-                          radius: 100,
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Container(
-                            width: context.width * .4,
-                            height: context.width * .4,
-                            color: Colors.black.withOpacity(.5),
-                            child: const Center(
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: UpdateAvatarSelector(
+                        updatedPhoto: _updatedPhoto, userPhoto: userPhoto),
                   ),
                 ),
                 const SizedBox(
@@ -210,63 +187,23 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                BlocConsumer<AuthCubit, AuthState>(
-                  listener: (context, state) {
-                    if (state is UserUpdated) {
-                      Navigator.of(context).pop();
-                      CustomSnackbar.show(
-                          context, 'Profile updated successfully');
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is UpdatingUser) {
-                      return const CircularProgressIndicator();
-                    } else if (state is AuthError) {
-                      return Text(state.message);
-                    } else {
-                      return isChanged
-                          ? ElevatedButton(
-                              onPressed: () {
-                                Map<UpdateUserAction, dynamic> updates = {};
-                                if (firstNameChanged) {
-                                  updates[UpdateUserAction.firstName] =
-                                      _firstNameController.text;
-                                }
-                                if (lastNameChanged) {
-                                  updates[UpdateUserAction.lastName] =
-                                      _lastNameController.text;
-                                }
-                                if (bioChanged) {
-                                  updates[UpdateUserAction.bio] =
-                                      _bioController.text;
-                                }
-                                if (cityChanged) {
-                                  updates[UpdateUserAction.city] =
-                                      _cityController.text;
-                                }
-                                if (countryChanged) {
-                                  updates[UpdateUserAction.nationality] =
-                                      _countryController.text;
-                                }
-                                if (photoChanged) {
-                                  updates[UpdateUserAction.profilePicture] =
-                                      _updatedPhoto;
-                                }
-
-                                context
-                                    .read<AuthCubit>()
-                                    .updateUser(updates: updates);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(context.width, 50),
-                              ),
-                              child: const Text(
-                                'Update Profile',
-                              ),
-                            )
-                          : const SizedBox();
-                    }
-                  },
+                BlocProvider(
+                  create: (context) => sl<AuthCubit>(),
+                  child: UpdateProfileButton(
+                    isChanged: isChanged,
+                    firstNameChanged: firstNameChanged,
+                    firstNameController: _firstNameController,
+                    lastNameChanged: lastNameChanged,
+                    lastNameController: _lastNameController,
+                    bioChanged: bioChanged,
+                    bioController: _bioController,
+                    cityChanged: cityChanged,
+                    cityController: _cityController,
+                    countryChanged: countryChanged,
+                    countryController: _countryController,
+                    photoChanged: photoChanged,
+                    updatedPhoto: _updatedPhoto,
+                  ),
                 )
               ],
             ),

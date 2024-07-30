@@ -8,7 +8,6 @@ import 'package:peak_mates/core/enums/update_user.dart';
 import 'package:peak_mates/core/errors/exceptions.dart';
 import 'package:peak_mates/core/utilities/typedefs.dart';
 import 'package:peak_mates/features/auth/data/models/user_model.dart';
-import 'package:peak_mates/features/auth/domain/entities/user.dart';
 
 abstract class AuthRemoteDataSource {
   AuthRemoteDataSource();

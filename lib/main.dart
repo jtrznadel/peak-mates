@@ -5,7 +5,6 @@ import 'package:peak_mates/core/common/app/providers/user_provider.dart';
 import 'package:peak_mates/core/common/providers/theme_controller.dart';
 import 'package:peak_mates/core/services/injection_container.dart';
 import 'package:peak_mates/core/services/router.dart';
-import 'package:peak_mates/core/utilities/themes/theme.dart';
 import 'package:peak_mates/core/common/providers/navigation_controller.dart';
 import 'package:peak_mates/firebase_options.dart';
 import 'package:provider/provider.dart';

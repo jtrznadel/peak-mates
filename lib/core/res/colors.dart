@@ -15,10 +15,10 @@ class AppColors {
 
   //Background colors
   // static const bgColorDark = Color(0xFF25272E);
-  static const bgColorDark = Color(0xFF111A24);
+  static const bgColorDark = Color(0xFF212121);
   static const bgColorLight = Color(0xFFF5F5F5);
 
   //Widget colors
-  static const cardDarkColor = Color(0xFF2a3445);
+  static const cardDarkColor = Color(0xFF2A2A2A);
   static const cardLightColor = Color(0xFFE5E5E5);
 }

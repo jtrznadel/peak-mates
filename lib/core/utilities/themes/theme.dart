@@ -8,6 +8,7 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     primaryColor: AppColors.grayDarkColor,
+    hoverColor: AppColors.bgColorLight,
     textTheme: TextTheme(
       titleLarge: GoogleFonts.inter(
         color: AppColors.primaryColor,
@@ -60,6 +61,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.bgColorLight,
       elevation: 0,
+      scrolledUnderElevation: 0,
       foregroundColor: AppColors.grayDarkColor,
       titleTextStyle: GoogleFonts.inter(
         color: AppColors.grayDarkColor,
@@ -178,11 +180,37 @@ class AppTheme {
       trackColor: WidgetStateProperty.all(AppColors.grayLightColor),
       trackOutlineColor: WidgetStateProperty.all(AppColors.grayLightColor),
     ),
+    searchBarTheme: SearchBarThemeData(
+      backgroundColor: WidgetStateProperty.all(AppColors.cardLightColor),
+      hintStyle: WidgetStateProperty.all(
+        GoogleFonts.inter(
+          color: AppColors.grayLightColor,
+          fontSize: 16,
+        ),
+      ),
+      textStyle: WidgetStateProperty.all(
+        GoogleFonts.inter(
+          color: AppColors.darkTextColor,
+          fontSize: 16,
+        ),
+      ),
+      elevation: const WidgetStatePropertyAll(8),
+      textCapitalization: TextCapitalization.sentences,
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      padding: const WidgetStatePropertyAll(
+        EdgeInsets.symmetric(horizontal: 10),
+      ),
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     primaryColor: AppColors.primaryColor,
+    hoverColor: AppColors.bgColorDark,
     textTheme: TextTheme(
       titleLarge: GoogleFonts.inter(
         color: AppColors.primaryColor,
@@ -235,6 +263,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.bgColorDark,
       elevation: 0,
+      scrolledUnderElevation: 0,
       foregroundColor: AppColors.grayDarkColor,
       titleTextStyle: GoogleFonts.inter(
         color: AppColors.primaryColor,
@@ -354,6 +383,31 @@ class AppTheme {
       thumbColor: WidgetStateProperty.all(AppColors.primaryColor),
       trackColor: WidgetStateProperty.all(AppColors.grayDarkColor),
       trackOutlineColor: WidgetStateProperty.all(AppColors.grayDarkColor),
+    ),
+    searchBarTheme: SearchBarThemeData(
+      backgroundColor: WidgetStateProperty.all(AppColors.cardDarkColor),
+      hintStyle: WidgetStateProperty.all(
+        GoogleFonts.inter(
+          color: AppColors.grayDarkColor,
+          fontSize: 16,
+        ),
+      ),
+      textStyle: WidgetStateProperty.all(
+        GoogleFonts.inter(
+          color: AppColors.lightTextColor,
+          fontSize: 16,
+        ),
+      ),
+      elevation: const WidgetStatePropertyAll(10),
+      textCapitalization: TextCapitalization.sentences,
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      padding: const WidgetStatePropertyAll(
+        EdgeInsets.symmetric(horizontal: 10),
+      ),
     ),
   );
 }

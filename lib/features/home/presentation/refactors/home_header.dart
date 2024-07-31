@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:peak_mates/core/extensions/context_extension.dart';
+import 'package:peak_mates/core/res/colors.dart';
 import 'package:peak_mates/core/res/string_res.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -8,26 +11,24 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: StringRes.hintSearch,
-            prefixIcon: Icon(Icons.search),
-            contentPadding: EdgeInsets.all(10),
-            suffixIcon: Icon(Icons.filter_list),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-              borderSide: BorderSide.none,
-            ),
-            filled: true,
+        SearchBar(
+          hintText: StringRes.hintSearch,
+          leading: Icon(
+            Icons.search,
+            color: context.theme.primaryColor,
           ),
+          trailing: const [
+            Icon(
+              Icons.filter_list,
+              color: AppColors.secondaryColor,
+            ),
+          ],
         ),
       ],
     );

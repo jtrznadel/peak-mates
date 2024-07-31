@@ -15,10 +15,10 @@ import 'package:peak_mates/features/profile/presentation/views/update_profile_sc
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case OnboardingScreen.routeName:
-      return _pageFadeBuilder((_) => const OnboardingScreen(),
-          settings: settings);
-    case '//':
+    // case OnboardingScreen.routeName:
+    //   return _pageFadeBuilder((_) => const OnboardingScreen(),
+    //       settings: settings);
+    case '/':
       return _pageFadeBuilder((context) {
         if (sl<FirebaseAuth>().currentUser != null) {
           final user = sl<FirebaseAuth>().currentUser!;

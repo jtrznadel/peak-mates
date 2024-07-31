@@ -5,7 +5,9 @@ class StringRes {
   static const String mate = 'PeakMate';
 
   static const String onBoardingTitle = 'Welcome to';
-  static const String onBoardingSubtitle = 'Find Your Adventure Companion';
+  static const String onBoardingSubtitle = 'Find Your Adventure Mate';
+  static const String onBoardingInfo =
+      'Discover, connect, and embark on mountain adventures with fellow enthusiasts. Let\'s make every peak an unforgettable experience!';
 
   static const String selectionTitle = 'The best app to find new ';
 

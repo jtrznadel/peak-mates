@@ -9,14 +9,16 @@ import 'package:peak_mates/features/auth/presentation/views/login_screen.dart';
 import 'package:peak_mates/features/auth/presentation/views/selection_screen.dart';
 import 'package:peak_mates/features/auth/presentation/views/sign_up_screen.dart';
 import 'package:peak_mates/core/common/view/navigation_view.dart';
+import 'package:peak_mates/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:peak_mates/features/profile/presentation/views/settings_screen.dart';
 import 'package:peak_mates/features/profile/presentation/views/update_profile_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    // case OnboardingScreen.routeName:
-    //   return _pageBuilder((_) => const OnboardingScreen(), settings: settings);
-    case '/':
+    case OnboardingScreen.routeName:
+      return _pageFadeBuilder((_) => const OnboardingScreen(),
+          settings: settings);
+    case '//':
       return _pageFadeBuilder((context) {
         if (sl<FirebaseAuth>().currentUser != null) {
           final user = sl<FirebaseAuth>().currentUser!;

@@ -32,7 +32,6 @@ class ProfileDetailsSection extends StatelessWidget {
                   '${context.currentUser!.firstName} ${context.currentUser!.lastName}',
                   style: context.theme.textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.bold,
-                    fontSize: 24,
                   ),
                 ),
                 const SizedBox(width: 5),

@@ -1,0 +1,4 @@
+enum Transportation {
+  carpooling,
+  selfArranged,
+}

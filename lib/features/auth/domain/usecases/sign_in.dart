@@ -4,7 +4,7 @@ import 'package:peak_mates/core/utilities/usecases.dart';
 import 'package:peak_mates/features/auth/domain/entities/user.dart';
 import 'package:peak_mates/features/auth/domain/repositories/auth_repo.dart';
 
-class SignIn extends UsecaseWithParams<LocalUser, SignInParams> {
+class SignIn extends FutureUsecaseWithParams<LocalUser, SignInParams> {
   const SignIn(this._repo);
 
   final AuthRepo _repo;

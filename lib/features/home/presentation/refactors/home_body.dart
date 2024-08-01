@@ -15,6 +15,10 @@ class HomeBody extends StatelessWidget {
         child: Column(
           children: [
             const HeadingSeeAll(
+              heading: 'Upcoming trip ⏳',
+            ),
+            //TODO: Implement UpcomingTripWidget
+            const HeadingSeeAll(
               heading: 'Trending 🔥',
             ),
             SizedBox(

@@ -3,7 +3,7 @@ import 'package:peak_mates/core/utilities/typedefs.dart';
 import 'package:peak_mates/core/utilities/usecases.dart';
 import 'package:peak_mates/features/auth/domain/repositories/auth_repo.dart';
 
-class SignUp extends UsecaseWithParams<void, SignUpParams> {
+class SignUp extends FutureUsecaseWithParams<void, SignUpParams> {
   const SignUp(this._repo);
 
   final AuthRepo _repo;
